@@ -108,7 +108,7 @@ export default function UploadBox() {
             formData.append("csv", file);
 
             const response = await axios.post(
-                "http://localhost:5000/api/upload",
+                `${process.env.NEXT_PUBLIC_API_URL}/api/upload`,
                 formData,
                 {
                     headers: {
