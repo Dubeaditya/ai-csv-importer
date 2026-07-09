@@ -1,26 +1,45 @@
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+const prompt = require("../utils/prompt");
+
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
+const model = genAI.getGenerativeModel({
+  model: "gemini-2.5-flash",
+});
+
 async function processBatch(records) {
+  try {
+    const finalPrompt = `
+${prompt}
 
-    const processed = records.map((row, index) => {
+CSV Records:
+${JSON.stringify(records, null, 2)}
+`;
 
-        return {
-            id: index + 1,
-            name: row.name || row.Name || "",
-            email: row.email || row.Email || "",
-            phone: row.phone || row.Phone || "",
-            company: row.company || row.Company || "",
-            status: "Imported",
-            source: "AI Demo",
-            confidence: "98%",
-            remarks: "Validated Successfully"
-        };
+    console.log("Sending request to Gemini...");
 
-    });
+    const result = await model.generateContent(finalPrompt);
 
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    const text = result.response.text();
 
-    return processed;
+    console.log("Gemini Raw Response:");
+    console.log(text);
+
+    const cleaned = text
+      .replace(/```json/g, "")
+      .replace(/```/g, "")
+      .trim();
+
+    return JSON.parse(cleaned);
+
+  } catch (err) {
+    console.error("Gemini Error:");
+    console.error(err);
+
+    throw err;
+  }
 }
 
 module.exports = {
-    processBatch,
+  processBatch,
 };
