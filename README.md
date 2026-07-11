@@ -84,7 +84,7 @@ Download Processed CSV
   - CORS
 
 # 📁 Project Structure
-
+```text
 AI-CRM-CSV-Importer
 │
 ├── frontend
@@ -106,8 +106,7 @@ AI-CRM-CSV-Importer
 │   └── .env
 │
 └── README.md
-
----
+```
 
 # 🚀 Installation
 
@@ -486,4 +485,4 @@ This project is intended for educational and demonstration purposes. Update the 
 
 ---
 
-⭐ If you found this project useful, consider me for Software develper Role(Intern)
+⭐ If you found this project useful, consider me for Software developer Role(Intern)
