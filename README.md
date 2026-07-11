@@ -1,4 +1,4 @@
-** AI CRM CSV Importer**
+*** AI CRM CSV Importer***
 
 An AI-powered CRM CSV Importer built using **Next.js**, **Node.js**, **Express.js**, **TypeScript**, and **Google Gemini AI**. The application enables users to upload CSV files, preview records, process customer data using AI, visualize import analytics, and download the processed CRM-ready CSV.
 
